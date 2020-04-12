@@ -15,6 +15,8 @@ import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ReservationTest {
 
@@ -33,39 +35,35 @@ public class ReservationTest {
         ReservationCommand reservationCommand = new ReservationCommand(
                 LocalDate.of(2020, 10, 2),
                 LocalDate.of(2020, 10, 3),
-                new Apartment("house1", "middle", 1500.00, 60.00),
+                new Apartment("house1", "middle", 1400.00, 60.00),
                 new User("Jacek", "Owner"),
                 new User("Marcin", "Borrower"),
-                1500.00);
+                1400.00);
 
         ResponseEntity<Reservation> bookingResponseEntity = restTemplate.postForEntity(getUri(""), reservationCommand, Reservation.class);
 
-        Assert.assertEquals(200, bookingResponseEntity.getStatusCode().value());
-        Assert.assertEquals(bookingResponseEntity.getBody().getPrice(), reservationCommand.getPrice());
-        Assert.assertEquals(Objects.requireNonNull(bookingResponseEntity.getBody()).getBorrower(), reservationCommand.getBorrower());
-        Assert.assertEquals(Objects.requireNonNull(bookingResponseEntity.getBody()).getStartReservation(), reservationCommand.getFinishReservation());
-        Assert.assertEquals(Objects.requireNonNull(bookingResponseEntity.getBody()).getFinishReservation(), reservationCommand.getFinishReservation());
+        assertThat(Objects.requireNonNull(bookingResponseEntity.getBody()).getFinishReservation()).isEqualTo(reservationCommand.getFinishReservation());
+        assertThat(Objects.requireNonNull(bookingResponseEntity.getBody()).getStartReservation()).isEqualTo(reservationCommand.getStartReservation());
+        assertThat(1500.00).isEqualTo(reservationCommand.getPrice());
 
 
     }
 
     @Test
     void reservationAddToDb() throws URISyntaxException {
+
         ReservationCommand reservationCommand = new ReservationCommand(
-                LocalDate.of(2020, 9, 20),
-                LocalDate.of(2020, 9, 27),
+                LocalDate.of(2020, 10, 2),
+                LocalDate.of(2020, 10, 3),
                 new Apartment("house1", "middle", 1400.00, 60.00),
                 new User("Jacek", "Owner"),
                 new User("Marcin", "Borrower"),
-                2000.00);
+                1400.00);
 
         ResponseEntity<Reservation> bookingResponseEntity = restTemplate.postForEntity(getUri(""), reservationCommand, Reservation.class);
 
-        Assert.assertEquals(200, bookingResponseEntity.getStatusCode().value());
-        Assert.assertEquals(bookingResponseEntity.getBody().getPrice(), reservationCommand.getPrice());
-        Assert.assertEquals(Objects.requireNonNull(bookingResponseEntity.getBody()).getBorrower(), reservationCommand.getBorrower());
-        Assert.assertEquals(Objects.requireNonNull(bookingResponseEntity.getBody()).getStartReservation(), reservationCommand.getStartReservation());
-        Assert.assertEquals(Objects.requireNonNull(bookingResponseEntity.getBody()).getFinishReservation(), reservationCommand.getFinishReservation());
-
+        assertThat(Objects.requireNonNull(bookingResponseEntity.getBody()).getFinishReservation()).isEqualTo(reservationCommand.getFinishReservation());
+        assertThat(Objects.requireNonNull(bookingResponseEntity.getBody()).getStartReservation()).isEqualTo(reservationCommand.getStartReservation());
+        assertThat(1400.00).isEqualTo(reservationCommand.getPrice());
     }
 }
