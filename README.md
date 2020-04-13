@@ -7,11 +7,11 @@ http://localhost:4000/database
 
 **Create new reservation**
 ```
-curl -X POST "http://localhost:4000/apartmentReservation" -H "accept: */*" -H "Content-Type: application/json" -d "{ \"owner\": { \"name\": \"Jacek\", \"role\": \"Owner\" }, \"price\": 1500, \"apartment\": { \"description\": \"string\", \"name\": \"house1\", \"price\": 1500, \"surface\": 60 }, \"finishReservation\": \"2020-05-06\", \"startReservation\": \"2020-05-01\", \"borrower\": { \"name\": \"Wojtek\", \"role\": \"Borrower\" }}"
+curl -X POST "http://localhost:4000/apartmentReservation" -H "accept: */*" -H "Content-Type: application/json" -d "{ \"owner\": { \"name\": \"Jacek\", \"role\": \"Owner\" }, \"price\": 1500, \"apartment\": { \"description\": \"string\", \"name\": \"house1\", \"price\": 1500, \"surface\": 60 }, \"finishReservation\": \"2020-05-06T12:45:30\", \"startReservation\": \"2020-05-01T12:45:30\", \"borrower\": { \"name\": \"Wojtek\", \"role\": \"Borrower\" }}"
 ```
 **Update reservation by ID**
 ```
-curl -X PUT "http://localhost:4000/apartmentReservation/updateReservation/3" -H "accept: */*" -H "Content-Type: application/json" -d "{ \"owner\": { \"name\": \"Jacek\", \"role\": \"Owner\" }, \"price\": 1500, \"apartment\": { \"description\": \"string\", \"name\": \"house1\", \"price\": 1500, \"surface\": 60 }, \"finishReservation\": \"2020-05-07\", \"startReservation\": \"2020-05-02\", \"borrower\": { \"name\": \"Wojtek\", \"role\": \"Borrower\" }}"
+curl -X PUT "http://localhost:4000/apartmentReservation/updateReservation/3" -H "accept: */*" -H "Content-Type: application/json" -d "{ \"owner\": { \"name\": \"Jacek\", \"role\": \"Owner\" }, \"price\": 1500, \"apartment\": { \"description\": \"string\", \"name\": \"house1\", \"price\": 1500, \"surface\": 60 }, \"finishReservation\": \"2020-05-07T12:45:30\", \"startReservation\": \"2020-05-02T12:45:30\", \"borrower\": { \"name\": \"Wojtek\", \"role\": \"Borrower\" }}"
 ```
 **Get reservation list by owner**
 ```
