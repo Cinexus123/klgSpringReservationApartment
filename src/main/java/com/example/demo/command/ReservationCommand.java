@@ -2,11 +2,7 @@ package com.example.demo.command;
 
 import com.example.demo.entity.Apartment;
 import com.example.demo.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class ReservationCommand {

@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ReservationTest {
 
-/*    @LocalServerPort
+    @LocalServerPort
     int port;
 
     private RestTemplate restTemplate = new RestTemplate();
@@ -33,8 +33,8 @@ public class ReservationTest {
     void noReservationAddToDb() throws URISyntaxException {
 
         ReservationCommand reservationCommand = new ReservationCommand(
-                LocalDate.of(2020, 10, 2),
-                LocalDate.of(2020, 10, 3),
+                LocalDateTime.of(2020, 10, 2,12,45),
+                LocalDateTime.of(2020, 10, 3,12,45),
                 new Apartment("house1", "middle", 1400.00, 60.00),
                 new User("Jacek", "Owner"),
                 new User("Marcin", "Borrower"),
@@ -53,8 +53,8 @@ public class ReservationTest {
     void reservationAddToDb() throws URISyntaxException {
 
         ReservationCommand reservationCommand = new ReservationCommand(
-                LocalDate.of(2020, 10, 2),
-                LocalDate.of(2020, 10, 3),
+                LocalDateTime.of(2020, 10, 2,12,45),
+                LocalDateTime.of(2020, 10, 3,12,45),
                 new Apartment("house1", "middle", 1400.00, 60.00),
                 new User("Jacek", "Owner"),
                 new User("Marcin", "Borrower"),
@@ -65,5 +65,5 @@ public class ReservationTest {
         assertThat(Objects.requireNonNull(bookingResponseEntity.getBody()).getFinishReservation()).isEqualTo(reservationCommand.getFinishReservation());
         assertThat(Objects.requireNonNull(bookingResponseEntity.getBody()).getStartReservation()).isEqualTo(reservationCommand.getStartReservation());
         assertThat(1400.00).isEqualTo(reservationCommand.getPrice());
-    }*/
+    }
 }

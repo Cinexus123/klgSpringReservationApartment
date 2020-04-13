@@ -13,7 +13,6 @@ import com.example.demo.service.ReservationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Optional;
@@ -61,7 +60,10 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public List<Reservation> getOwnerReservation(String name) {
         User owner = personRepository.findByName(name);
+        if(owner.getRole().equals("Owner"))
         return reservationRepository.findAllByOwner(owner);
+        else
+            throw new NotFoundException();
     }
 
     @Override
@@ -86,9 +88,9 @@ public class ReservationServiceImpl implements ReservationService {
         for(Reservation element : reservationList) {
             startReservationElement = element.getStartReservation().toEpochSecond(ZoneOffset.UTC);
             finishReservationElement = element.getFinishReservation().toEpochSecond(ZoneOffset.UTC);
-            if (((startReservationElement > startReservationInSeconds) && (startReservationElement < finishReservationInSeconds)) ||
-                    (finishReservationElement > startReservationInSeconds) && (finishReservationElement < finishReservationInSeconds) ||
-                    (startReservationElement <= startReservationInSeconds) && (finishReservationElement > finishReservationInSeconds))
+            if (((startReservationElement >= startReservationInSeconds) && (startReservationElement <= finishReservationInSeconds)) ||
+                    (finishReservationElement >= startReservationInSeconds) && (finishReservationElement <= finishReservationInSeconds) ||
+                    (startReservationElement <= startReservationInSeconds) && (finishReservationElement >= finishReservationInSeconds))
 
             {
                 throw new ReservationNotAvailableException();
