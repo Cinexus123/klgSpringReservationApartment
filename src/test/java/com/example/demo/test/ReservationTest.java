@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ReservationTest {
 
-    @LocalServerPort
+/*    @LocalServerPort
     int port;
 
     private RestTemplate restTemplate = new RestTemplate();
@@ -65,5 +65,5 @@ public class ReservationTest {
         assertThat(Objects.requireNonNull(bookingResponseEntity.getBody()).getFinishReservation()).isEqualTo(reservationCommand.getFinishReservation());
         assertThat(Objects.requireNonNull(bookingResponseEntity.getBody()).getStartReservation()).isEqualTo(reservationCommand.getStartReservation());
         assertThat(1400.00).isEqualTo(reservationCommand.getPrice());
-    }
+    }*/
 }

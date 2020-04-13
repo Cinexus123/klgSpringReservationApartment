@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
@@ -16,8 +17,8 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate startReservation;
-    private LocalDate finishReservation;
+    private LocalDateTime startReservation;
+    private LocalDateTime finishReservation;
 
     @ManyToOne
     private Apartment apartment;
@@ -30,7 +31,7 @@ public class Reservation {
 
     private Double price;
 
-    public Reservation(LocalDate startReservation, LocalDate finishReservation, Apartment apartment, User owner, User borrower, Double price) {
+    public Reservation(LocalDateTime startReservation, LocalDateTime finishReservation, Apartment apartment, User owner, User borrower, Double price) {
         this.startReservation = startReservation;
         this.finishReservation = finishReservation;
         this.apartment = apartment;
@@ -47,19 +48,19 @@ public class Reservation {
         this.id = id;
     }
 
-    public LocalDate getStartReservation() {
+    public LocalDateTime getStartReservation() {
         return startReservation;
     }
 
-    public void setStartReservation(LocalDate startReservation) {
+    public void setStartReservation(LocalDateTime startReservation) {
         this.startReservation = startReservation;
     }
 
-    public LocalDate getFinishReservation() {
+    public LocalDateTime getFinishReservation() {
         return finishReservation;
     }
 
-    public void setFinishReservation(LocalDate finishReservation) {
+    public void setFinishReservation(LocalDateTime finishReservation) {
         this.finishReservation = finishReservation;
     }
 

@@ -7,11 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ReservationCommand {
 
-    private LocalDate startReservation;
-    private LocalDate finishReservation;
+    private LocalDateTime startReservation;
+    private LocalDateTime finishReservation;
     private Apartment apartment;
     private User owner;
     private User borrower;
@@ -21,7 +22,7 @@ public class ReservationCommand {
     public ReservationCommand() {
     }
 
-    public ReservationCommand(LocalDate startReservation, LocalDate finishReservation, Apartment apartment, User owner, User borrower, Double price) {
+    public ReservationCommand(LocalDateTime startReservation, LocalDateTime finishReservation, Apartment apartment, User owner, User borrower, Double price) {
         this.startReservation = startReservation;
         this.finishReservation = finishReservation;
         this.apartment = apartment;
@@ -30,19 +31,19 @@ public class ReservationCommand {
         this.price = price;
     }
 
-    public LocalDate getStartReservation() {
+    public LocalDateTime getStartReservation() {
         return startReservation;
     }
 
-    public void setStartReservation(LocalDate startReservation) {
+    public void setStartReservation(LocalDateTime startReservation) {
         this.startReservation = startReservation;
     }
 
-    public LocalDate getFinishReservation() {
+    public LocalDateTime getFinishReservation() {
         return finishReservation;
     }
 
-    public void setFinishReservation(LocalDate finishReservation) {
+    public void setFinishReservation(LocalDateTime finishReservation) {
         this.finishReservation = finishReservation;
     }
 
